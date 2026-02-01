@@ -1,44 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(135deg,#ff758c,#ff7eb3);
-      font-family: Arial, sans-serif;
-    }
-    .card {
-      max-width: 420px;
-      margin: 60px auto;
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
-    h1 { color:#ff4f81; }
-    p { font-size:16px; line-height:1.6; }
-    .heart { font-size:40px; }
-  </style>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg,#ff5f9e,#ff87b2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Card */
+.card {
+  background: white;
+  max-width: 420px;
+  margin: auto;
+  margin-top: 15vh;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  animation: fadeIn 1.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-heart {
+  font-size: 50px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+h1 {
+  color: #ff4f81;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card">
-    <div class="heart">❤️</div>
-    <h1>Hey Love</h1>
-    <p>
-      This page exists because you exist in my heart.
-      Every smile of yours makes my world better.
-    </p>
-    <p>
-      Just wanted to remind you —
-      <strong>you mean everything to me.</strong>
-    </p>
-    <p><strong>– Ravish 💕</strong></p>
-  </div>
+<div class="card">
+  <div class="main-heart">❤️</div>
+  <h1>Hey Love</h1>
+
+  <p>
+    This page exists because you exist in my heart.
+    Every smile of yours makes my world brighter.
+  </p>
+
+  <p>
+    Just wanted to remind you —
+    <strong>you mean everything to me.</strong>
+  </p>
+
+  <p><strong>– Ravish 💕</strong></p>
+</div>
+
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
