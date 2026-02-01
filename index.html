@@ -2,68 +2,67 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>Be My Valentine ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg,#ff5f9e,#ff87b2);
-  font-family: 'Segoe UI', sans-serif;
+  background: #ffd6e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
 }
 
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  font-size: 24px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-/* Card */
 .card {
-  background: white;
-  max-width: 420px;
-  margin: auto;
-  margin-top: 15vh;
-  padding: 30px;
-  border-radius: 25px;
+  background: #fff;
+  width: 320px;
+  padding: 25px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-  animation: fadeIn 1.8s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.main-heart {
+.cat {
   font-size: 50px;
-  animation: pulse 1.5s infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+h2 {
+  margin: 15px 0;
 }
 
-h1 {
-  color: #ff4f81;
-  margin-top: 10px;
+.buttons {
+  position: relative;
+  height: 120px;
 }
 
-p {
+button {
+  padding: 12px 28px;
   font-size: 16px;
-  line-height: 1.6;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff3b7f;
+  color: white;
+}
+
+#no {
+  position: absolute;
+  background: #eee;
+  color: #333;
+  left: 120px;
+  top: 60px;
+}
+
+small {
+  display: block;
+  margin-top: 10px;
+  color: #777;
 }
 </style>
 </head>
@@ -71,35 +70,47 @@ p {
 <body>
 
 <div class="card">
-  <div class="main-heart">❤️</div>
-  <h1>Hey Love</h1>
+  <div class="cat">🐱❤️</div>
+  <h2>Dolly, will you be my Valentine?</h2>
 
-  <p>
-    This page exists because you exist in my heart.
-    Every smile of yours makes my world brighter.
-  </p>
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">Yes</button>
+    <button id="no">No</button>
+  </div>
 
-  <p>
-    Just wanted to remind you —
-    <strong>you mean everything to me.</strong>
-  </p>
-
-  <p><strong>– Ravish 💕</strong></p>
+  <small>“No” seems a bit shy 😏</small>
 </div>
 
 <script>
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-  document.body.appendChild(heart);
+const noBtn = document.getElementById("no");
 
-  setTimeout(() => heart.remove(), 7000);
+function moveNoButton() {
+  const x = Math.random() * 200;
+  const y = Math.random() * 80;
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 }
 
-setInterval(createHeart, 300);
+// For mouse + touch
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#ff5fa2;
+      color:white;
+      font-size:26px;
+      text-align:center;
+      padding:20px;">
+      💖 YAY!!! 💖<br><br>
+      Best decision ever 😘
+    </div>`;
+}
 </script>
 
 </body>
