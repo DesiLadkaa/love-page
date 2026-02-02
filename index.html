@@ -2,181 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 💖</title>
+<title>Just One Question 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: #f6c1cc;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Segoe UI", sans-serif;
-  overflow: hidden;
-}
-
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 0.7; }
-  100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
 }
 
 .card {
-  background: white;
+  background: #fff;
   width: 340px;
-  padding: 28px 20px 35px;
-  border-radius: 30px;
+  padding: 30px 20px 40px;
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
-  animation: popIn 1s ease;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
-@keyframes popIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.face {
-  font-size: 70px;
+.character {
+  position: relative;
+  font-size: 72px;
   margin-bottom: 10px;
-  animation: blink 4s infinite;
 }
 
-@keyframes blink {
-  0%, 95%, 100% { transform: scaleY(1); }
-  96% { transform: scaleY(0.1); }
+.character span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 22px;
 }
 
 h2 {
   font-weight: 600;
-  margin: 15px 0 25px;
-  line-height: 1.3;
+  margin: 15px 0 30px;
+  line-height: 1.4;
 }
 
 .buttons {
   position: relative;
-  height: 140px;
+  height: 90px;
 }
 
-/* YES button */
 #yes {
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  background: #ff4d79;
   color: white;
-  font-size: 20px;
-  padding: 16px 55px;
-  border-radius: 50px;
+  font-size: 18px;
+  padding: 14px 46px;
+  border-radius: 40px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 12px 30px rgba(255,75,43,0.6);
-  animation: pulse 1.5s infinite;
+  box-shadow: 0 10px 25px rgba(255,77,121,0.5);
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.07); }
-  100% { transform: scale(1); }
-}
-
-/* NO button */
 #no {
   position: absolute;
+  top: 10px;
+  left: 190px;
   font-size: 12px;
   padding: 6px 16px;
   border-radius: 20px;
   border: none;
-  background: #f1f1f1;
-  color: #555;
-  top: 80px;
-  left: 200px;
+  background: #e5e5e5;
+  color: #666;
   cursor: pointer;
 }
 
 small {
-  color: #999;
   display: block;
   margin-top: 12px;
+  color: #aaa;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <div class="face" id="face">🐼❤️</div>
+<div class="card">
+  <div class="character">
+    🐱
+    <span>❤️</span>
+  </div>
 
   <h2>Dolly,<br>will you be my Valentine?</h2>
 
   <div class="buttons">
-    <button id="yes" onclick="yesClicked()">Yes</button>
+    <button id="yes" onclick="yesClick()">Yes</button>
     <button id="no">No</button>
   </div>
 
-  <small>No is feeling a little shy 🙈</small>
+  <small>No seems a bit shy 🙂</small>
 </div>
 
 <script>
-/* Floating hearts generator */
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (14 + Math.random() * 20) + "px";
-  document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 6000);
-}, 400);
-
-/* NO button movement */
 const noBtn = document.getElementById("no");
-const face = document.getElementById("face");
 
 function moveNo() {
-  const x = 140 + Math.random() * 80;
-  const y = 60 + Math.random() * 50;
+  const x = Math.random() * 140 + 160;
+  const y = Math.random() * 40;
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-  face.innerHTML = "🐼💦";
 }
 
 noBtn.addEventListener("mouseover", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
-/* YES click */
-function yesClicked() {
+function yesClick() {
   document.body.innerHTML = `
-  <div style="
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#ff416c,#ff4b2b);
-    color:white;
-    padding:25px;
-    font-family:Segoe UI;">
-    <div>
-      <div style="font-size:70px">💖🥰💖</div>
-      <h1>YAYYYY!!!</h1>
-      <p style="font-size:22px">
-        You just made my heart smile forever ❤️<br><br>
-        Happy Valentine’s Day 💕
-      </p>
-      <p style="margin-top:20px">– Ravish 💞</p>
+    <div style="
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#ff4d79;
+      color:white;
+      text-align:center;
+      padding:30px;
+      font-family:Segoe UI;">
+      <div>
+        <div style="font-size:70px">❤️</div>
+        <h1>It’s a YES 💖</h1>
+        <p style="font-size:20px">
+          Made with a smile,<br>
+          just for you.
+        </p>
+        <p style="margin-top:20px">– Ravish</p>
+      </div>
     </div>
-  </div>`;
+  `;
 }
 </script>
 
