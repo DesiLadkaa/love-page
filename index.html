@@ -6,317 +6,256 @@
 <title>Will you be my Valentine? 💝</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ffeef8,#ffe4f1);
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-overflow:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* sparkles */
-.sparkle{
-position:absolute;
-width:8px;height:8px;
-background:white;
-border-radius:50%;
-opacity:0;
-animation:sparkle 2s infinite;
-}
-@keyframes sparkle{
-0%,100%{opacity:0;transform:scale(0)}
-50%{opacity:1;transform:scale(1)}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffeef8, #ffe4f1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-.container{
-background:white;
-padding:50px 60px;
-border-radius:30px;
-box-shadow:0 20px 60px rgba(0,0,0,.1);
-text-align:center;
-position:relative;
-z-index:2;
+/* Sparkle */
+.sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%,100% {opacity:0; transform:scale(0);}
+    50% {opacity:1; transform:scale(1);}
+}
+
+.container {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
 }
 
 /* ===== CHARACTER ===== */
-.character{
-width:190px;
-height:190px;
-margin:0 auto 30px;
-position:relative;
-animation:float 3s ease-in-out infinite;
+.cat {
+    width: 150px;
+    height: 120px;
+    margin: 0 auto 30px;
+    position: relative;
+    background: radial-gradient(circle at top left, #ffd1b3, #ffb380);
+    border-radius: 50% 50% 48% 48%;
+    box-shadow: inset -4px -6px 10px rgba(0,0,0,0.08);
+    animation: float 3s ease-in-out infinite;
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
+@keyframes float {
+    0%,100% {transform:translateY(0);}
+    50% {transform:translateY(-10px);}
 }
 
-/* heart behind ear */
-.ear-heart{
-position:absolute;
-top:28px;
-right:30px;
-font-size:34px;
-z-index:1;
-filter:blur(.2px);
+/* 3D EARS */
+.cat::before,
+.cat::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 36px;
+    background: radial-gradient(circle at top, #ffd1b3, #ffb380);
+    border-radius: 60% 60% 40% 40%;
+    top: -18px;
+    box-shadow: inset -2px -4px 6px rgba(0,0,0,0.12);
 }
 
-/* ears */
-.ear{
-width:42px;
-height:42px;
-background:linear-gradient(145deg,#ffb7c8,#ff8fb3);
-border-radius:60% 60% 40% 40%;
-position:absolute;
-top:26px;
-z-index:3;
-box-shadow:0 8px 16px rgba(0,0,0,.12);
-}
-.ear.left{left:26px;transform:rotate(-15deg)}
-.ear.right{right:26px;transform:rotate(15deg)}
-
-/* face (heart-like blob) */
-.face{
-width:160px;
-height:160px;
-margin:auto;
-background:
-radial-gradient(circle at 30% 30%,#ffd6e1,#ff9fba);
-border-radius:
-55% 55% 60% 60% /
-60% 60% 45% 45%;
-position:relative;
-z-index:4;
-box-shadow:0 18px 30px rgba(255,140,170,.35);
+.cat::before {
+    left: 22px;
+    transform: rotate(-10deg);
 }
 
-/* eyes */
-.eye{
-width:9px;height:9px;
-background:#222;
-border-radius:50%;
-position:absolute;
-top:70px;
-}
-.eye.left{left:52px}
-.eye.right{right:52px}
-
-/* cheeks */
-.cheek{
-width:16px;height:9px;
-background:#ffb3c6;
-border-radius:50%;
-position:absolute;
-top:88px;
-opacity:.7;
-}
-.cheek.left{left:30px}
-.cheek.right{right:30px}
-
-/* cute tiny nose */
-.nose{
-width:5px;
-height:5px;
-background:radial-gradient(circle at 30% 30%,#ffdce5,#ff6f91);
-border-radius:50%;
-position:absolute;
-top:90px;
-left:50%;
-transform:translateX(-50%);
+.cat::after {
+    right: 22px;
+    transform: rotate(10deg);
 }
 
-/* text */
-h1{
-font-size:28px;
-margin-bottom:40px;
+/* EYES */
+.eye {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #2d2d2d;
+    border-radius: 50%;
+    top: 42px;
 }
 
-/* buttons */
-.buttons{
-display:flex;
-gap:18px;
-justify-content:center;
-align-items:center;
+.eye-left { left: 45px; }
+.eye-right { right: 45px; }
+
+/* NOSE */
+.nose {
+    position: absolute;
+    width: 7px;
+    height: 6px;
+    background: #ff9999;
+    border-radius: 50%;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* YES big */
-.yes-btn{
-width:160px;
-height:60px;
-border:none;
-border-radius:50px;
-background:#e91e63;
-color:white;
-font-size:22px;
-font-weight:600;
-box-shadow:0 6px 20px rgba(233,30,99,.4);
-cursor:pointer;
-transition:.3s;
-}
-.yes-btn:hover{transform:scale(1.05)}
-
-/* NO small */
-.no-btn{
-width:90px;
-height:42px;
-border:none;
-border-radius:50px;
-background:#e8e8e8;
-color:#888;
-font-size:16px;
-cursor:pointer;
-transition:.3s;
+/* BLUSH */
+.blush {
+    position: absolute;
+    width: 24px;
+    height: 13px;
+    background: #ffb3ba;
+    border-radius: 50%;
+    top: 62px;
+    opacity: 0.7;
 }
 
-/* messages */
-.romantic-message{
-margin-top:25px;
-font-size:18px;
-color:#e91e63;
-font-weight:600;
-min-height:30px;
+.blush-left { left: 15px; }
+.blush-right { right: 15px; }
+
+/* HEART — behind RIGHT ear */
+.heart {
+    position: absolute;
+    top: -22px;
+    right: 10px;
+    font-size: 34px;
+    z-index: -1;
+    animation: heartbeat 1.5s infinite;
+    filter: drop-shadow(0 2px 6px rgba(233,30,99,0.4));
 }
 
-.footer-text{
-margin-top:20px;
-font-size:14px;
-color:#999;
+@keyframes heartbeat {
+    0%,100% {transform:scale(1);}
+    25% {transform:scale(1.15);}
+    50% {transform:scale(1);}
 }
 
-/* celebration */
-.celebration{
-display:none;
-position:fixed;
-inset:0;
-background:linear-gradient(135deg,#ff6b9d,#c471ed,#ff6b9d);
-z-index:1000;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-}
-.celebration.show{display:flex}
-
-.celebration h2{
-font-size:60px;
-color:white;
-text-shadow:0 4px 20px rgba(0,0,0,.3);
-}
-.celebration p{
-font-size:28px;
-color:white;
-margin-top:10px;
+h1 {
+    font-size: 28px;
+    margin-bottom: 40px;
 }
 
-/* floating hearts */
-.floating-heart{
-position:absolute;
-font-size:40px;
-animation:floatHeart 6s linear;
-}
-@keyframes floatHeart{
-0%{transform:translateY(100vh);opacity:0}
-50%{opacity:1}
-100%{transform:translateY(-100vh);opacity:0}
+/* ===== BUTTONS (SIZE ONLY CHANGED) ===== */
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
-/* confetti */
-.confetti{
-position:absolute;
-width:10px;height:10px;
-background:white;
-animation:confetti 3s linear;
+button {
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
 }
-@keyframes confetti{
-to{transform:translateY(100vh) rotate(360deg)}
+
+.yes-btn {
+    background: #e91e63;
+    color: white;
+    padding: 14px 42px;
+    font-size: 20px;
+    box-shadow: 0 6px 20px rgba(233,30,99,0.4);
+}
+
+.no-btn {
+    background: #e8e8e8;
+    color: #888;
+    padding: 10px 28px;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.romantic-message {
+    margin-top: 25px;
+    font-size: 18px;
+    color: #e91e63;
+    min-height: 30px;
+}
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #999;
+}
+
+/* CELEBRATION */
+.celebration {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #ff6b9d, #c471ed);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.celebration.show {
+    display: flex;
+}
+
+.celebration h2 {
+    color: white;
+    font-size: 60px;
+}
+
+.celebration p {
+    color: white;
+    font-size: 28px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="sparkle" style="top:20%;left:10%"></div>
-<div class="sparkle" style="top:80%;left:20%;animation-delay:.5s"></div>
-<div class="sparkle" style="top:30%;right:15%;animation-delay:1s"></div>
-
 <div class="container">
-<div class="character">
-<div class="ear-heart">💗</div>
-<div class="ear left"></div>
-<div class="ear right"></div>
+    <div class="cat">
+        <div class="eye eye-left"></div>
+        <div class="eye eye-right"></div>
+        <div class="nose"></div>
+        <div class="blush blush-left"></div>
+        <div class="blush blush-right"></div>
+        <div class="heart">💗</div>
+    </div>
 
-<div class="face">
-<div class="eye left"></div>
-<div class="eye right"></div>
-<div class="nose"></div>
-<div class="cheek left"></div>
-<div class="cheek right"></div>
-</div>
-</div>
+    <h1>will you be my valentine?</h1>
 
-<h1>will you be my valentine?</h1>
+    <div class="buttons">
+        <button class="yes-btn" onclick="handleYes()">Yes</button>
+        <button class="no-btn" onclick="handleNo(this)">No</button>
+    </div>
 
-<div class="buttons">
-<button class="yes-btn" onclick="handleYes()">Yes</button>
-<button class="no-btn" onclick="handleNo(this)">No</button>
-</div>
-
-<div class="romantic-message" id="romanticMessage"></div>
-<p class="footer-text">*No* option is 100% lies 😉</p>
+    <div class="romantic-message" id="romanticMessage"></div>
+    <p class="footer-text">*No* option is 100% lies 😉</p>
 </div>
 
 <div class="celebration" id="celebration">
-<h2>I Love You! 💕</h2>
-<p>You make my heart complete ❤️</p>
+    <h2>I Love You! 💕</h2>
+    <p>You make my heart complete ❤️</p>
 </div>
 
 <script>
-let noClickCount=0;
+let noClickCount = 0;
 
-function handleYes(){
-const c=document.getElementById("celebration");
-c.classList.add("show");
-for(let i=0;i<80;i++)createConfetti();
-for(let i=0;i<30;i++)setTimeout(createFloatingHeart,i*200);
+function handleYes() {
+    document.getElementById('celebration').classList.add('show');
 }
 
-function handleNo(btn){
-noClickCount++;
-document.querySelector(".yes-btn").style.transform=
-"scale("+(1+noClickCount*0.05)+")";
-btn.style.transform=
-`translate(${Math.random()*60-30}px,${Math.random()*30-15}px)`;
-
-const msgs=[
-"You are my sunshine ☀️",
-"You make my heart melt 💕",
-"I can't imagine life without you 💖",
-"You are my forever 💝"
-];
-document.getElementById("romanticMessage").textContent=
-msgs[Math.floor(Math.random()*msgs.length)];
-}
-
-function createConfetti(){
-const d=document.createElement("div");
-d.className="confetti";
-d.style.left=Math.random()*100+"%";
-d.style.background=["#ff6b9d","#ffc371","#c471ed"][Math.floor(Math.random()*3)];
-document.body.appendChild(d);
-setTimeout(()=>d.remove(),3000);
-}
-
-function createFloatingHeart(){
-const h=document.createElement("div");
-h.className="floating-heart";
-h.textContent="💗";
-h.style.left=Math.random()*100+"%";
-document.getElementById("celebration").appendChild(h);
-setTimeout(()=>h.remove(),6000);
+function handleNo(btn) {
+    noClickCount++;
+    btn.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*40-20}px)`;
 }
 </script>
 
