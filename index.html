@@ -44,8 +44,8 @@ z-index:2;
 
 /* ===== CHARACTER ===== */
 .character{
-width:180px;
-height:180px;
+width:190px;
+height:190px;
 margin:0 auto 30px;
 position:relative;
 animation:float 3s ease-in-out infinite;
@@ -59,43 +59,45 @@ animation:float 3s ease-in-out infinite;
 /* heart behind ear */
 .ear-heart{
 position:absolute;
-top:20px;
-right:18px;
-font-size:36px;
+top:28px;
+right:30px;
+font-size:34px;
 z-index:1;
-animation:heartbeat 1.5s infinite;
-color:#ff5f9e;
+filter:blur(.2px);
 }
 
-/* ears / horns */
+/* ears */
 .ear{
-width:36px;
-height:46px;
-background:linear-gradient(#ffb6c9,#ff8fb3);
-border-radius:50% 50% 40% 40%;
+width:42px;
+height:42px;
+background:linear-gradient(145deg,#ffb7c8,#ff8fb3);
+border-radius:60% 60% 40% 40%;
 position:absolute;
-top:18px;
+top:26px;
 z-index:3;
-box-shadow:0 6px 15px rgba(0,0,0,.12);
+box-shadow:0 8px 16px rgba(0,0,0,.12);
 }
-.ear.left{left:20px;transform:rotate(-12deg)}
-.ear.right{right:20px;transform:rotate(12deg)}
+.ear.left{left:26px;transform:rotate(-15deg)}
+.ear.right{right:26px;transform:rotate(15deg)}
 
-/* head */
-.head{
+/* face (heart-like blob) */
+.face{
 width:160px;
 height:160px;
-background:radial-gradient(circle at 30% 30%,#ffd1dc,#ff9bb5);
-border-radius:50%;
 margin:auto;
+background:
+radial-gradient(circle at 30% 30%,#ffd6e1,#ff9fba);
+border-radius:
+55% 55% 60% 60% /
+60% 60% 45% 45%;
 position:relative;
 z-index:4;
-box-shadow:0 15px 30px rgba(0,0,0,.15);
+box-shadow:0 18px 30px rgba(255,140,170,.35);
 }
 
 /* eyes */
 .eye{
-width:10px;height:10px;
+width:9px;height:9px;
 background:#222;
 border-radius:50%;
 position:absolute;
@@ -106,69 +108,72 @@ top:70px;
 
 /* cheeks */
 .cheek{
-width:18px;height:10px;
+width:16px;height:9px;
 background:#ffb3c6;
 border-radius:50%;
 position:absolute;
-top:86px;
+top:88px;
 opacity:.7;
 }
-.cheek.left{left:28px}
-.cheek.right{right:28px}
+.cheek.left{left:30px}
+.cheek.right{right:30px}
 
-/* cute nose */
+/* cute tiny nose */
 .nose{
-width:6px;
-height:6px;
-background:radial-gradient(circle at 30% 30%,#ffd6de,#ff6f91);
+width:5px;
+height:5px;
+background:radial-gradient(circle at 30% 30%,#ffdce5,#ff6f91);
 border-radius:50%;
 position:absolute;
-top:88px;
+top:90px;
 left:50%;
 transform:translateX(-50%);
 }
 
-@keyframes heartbeat{
-0%,100%{transform:scale(1)}
-25%{transform:scale(1.2)}
-}
-
+/* text */
 h1{
 font-size:28px;
 margin-bottom:40px;
 }
 
+/* buttons */
 .buttons{
 display:flex;
-gap:20px;
+gap:18px;
 justify-content:center;
+align-items:center;
 }
 
-/* same aspect ratio */
-button{
-border:none;
-border-radius:50px;
-cursor:pointer;
-font-weight:600;
-transition:.3s;
+/* YES big */
+.yes-btn{
 width:160px;
 height:60px;
-}
-
-.yes-btn{
+border:none;
+border-radius:50px;
 background:#e91e63;
 color:white;
 font-size:22px;
+font-weight:600;
 box-shadow:0 6px 20px rgba(233,30,99,.4);
+cursor:pointer;
+transition:.3s;
 }
 .yes-btn:hover{transform:scale(1.05)}
 
+/* NO small */
 .no-btn{
+width:90px;
+height:42px;
+border:none;
+border-radius:50px;
 background:#e8e8e8;
 color:#888;
-font-size:18px;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
 }
 
+/* messages */
 .romantic-message{
 margin-top:25px;
 font-size:18px;
@@ -201,7 +206,6 @@ font-size:60px;
 color:white;
 text-shadow:0 4px 20px rgba(0,0,0,.3);
 }
-
 .celebration p{
 font-size:28px;
 color:white;
@@ -245,7 +249,7 @@ to{transform:translateY(100vh) rotate(360deg)}
 <div class="ear left"></div>
 <div class="ear right"></div>
 
-<div class="head">
+<div class="face">
 <div class="eye left"></div>
 <div class="eye right"></div>
 <div class="nose"></div>
@@ -276,57 +280,32 @@ let noClickCount=0;
 function handleYes(){
 const c=document.getElementById("celebration");
 c.classList.add("show");
-
-for(let i=0;i<100;i++)createConfetti();
+for(let i=0;i<80;i++)createConfetti();
 for(let i=0;i<30;i++)setTimeout(createFloatingHeart,i*200);
-
-const msgs=[
-'You make my heart complete ❤️',
-'Forever and always 💕',
-'You are my everything 💖',
-'Together forever, my love 💝'
-];
-let i=0;
-setInterval(()=>{
-i=(i+1)%msgs.length;
-c.querySelector("p").textContent=msgs[i];
-},3000);
 }
 
 function handleNo(btn){
 noClickCount++;
-const yes=document.querySelector(".yes-btn");
-yes.style.transform="scale("+(1+noClickCount*0.05)+")";
+document.querySelector(".yes-btn").style.transform=
+"scale("+(1+noClickCount*0.05)+")";
+btn.style.transform=
+`translate(${Math.random()*60-30}px,${Math.random()*30-15}px)`;
 
-btn.style.transform=`translate(${Math.random()*60-30}px,${Math.random()*40-20}px)`;
-
-const romanticMessages=[
-"You are my sunshine on a cloudy day ☀️",
-"Every moment with you is precious 💎",
-"You make my heart skip a beat 💓",
-"I can't imagine my life without you 🌹",
-"You are the reason I smile every day 😊",
-"My love for you grows stronger each day 🌺",
-"You complete me in every way 💕",
-"Being with you feels like home 🏡",
-"You are my forever and always 💖",
-"I fall in love with you more each day 💗",
-"You are my dream come true ✨",
-"Together we are unstoppable 💪❤️",
-"You light up my world 🌟",
-"My heart belongs only to you 💝",
-"You are my greatest adventure 🗺️❤️"
+const msgs=[
+"You are my sunshine ☀️",
+"You make my heart melt 💕",
+"I can't imagine life without you 💖",
+"You are my forever 💝"
 ];
-
 document.getElementById("romanticMessage").textContent=
-romanticMessages[Math.floor(Math.random()*romanticMessages.length)];
+msgs[Math.floor(Math.random()*msgs.length)];
 }
 
 function createConfetti(){
 const d=document.createElement("div");
 d.className="confetti";
 d.style.left=Math.random()*100+"%";
-d.style.background=["#ff6b9d","#ffc371","#c471ed","#12c2e9"][Math.floor(Math.random()*4)];
+d.style.background=["#ff6b9d","#ffc371","#c471ed"][Math.floor(Math.random()*3)];
 document.body.appendChild(d);
 setTimeout(()=>d.remove(),3000);
 }
@@ -334,20 +313,11 @@ setTimeout(()=>d.remove(),3000);
 function createFloatingHeart(){
 const h=document.createElement("div");
 h.className="floating-heart";
-h.textContent=["❤️","💕","💖","💗","💝","💞"][Math.floor(Math.random()*6)];
+h.textContent="💗";
 h.style.left=Math.random()*100+"%";
 document.getElementById("celebration").appendChild(h);
 setTimeout(()=>h.remove(),6000);
 }
-
-setInterval(()=>{
-const s=document.createElement("div");
-s.className="sparkle";
-s.style.top=Math.random()*100+"%";
-s.style.left=Math.random()*100+"%";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),2000);
-},500);
 </script>
 
 </body>
