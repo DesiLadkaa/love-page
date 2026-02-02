@@ -1,210 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Just One Question 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Will you be my Valentine? 💝</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(#fbd3dc, #f9a8b9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Segoe UI", sans-serif;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffeef8,#ffe4f1);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow:hidden;
 }
 
-.card {
-  background: white;
-  width: 340px;
-  padding: 28px 22px 38px;
-  border-radius: 28px;
-  text-align: center;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+/* sparkles */
+.sparkle{
+position:absolute;
+width:8px;height:8px;
+background:white;
+border-radius:50%;
+opacity:0;
+animation:sparkle 2s infinite;
+}
+@keyframes sparkle{
+0%,100%{opacity:0;transform:scale(0)}
+50%{opacity:1;transform:scale(1)}
 }
 
-/* CHARACTER */
-.character {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  margin: auto;
-  background: #f6b57b;
-  border-radius: 50%;
+.container{
+background:white;
+padding:50px 60px;
+border-radius:30px;
+box-shadow:0 20px 60px rgba(0,0,0,.1);
+text-align:center;
+position:relative;
+z-index:2;
 }
 
-.character::before,
-.character::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  width: 22px;
-  height: 22px;
-  background: #f6b57b;
-  border-radius: 50%;
+/* ===== 3D CHARACTER ===== */
+.character{
+width:160px;
+height:200px;
+margin:0 auto 30px;
+position:relative;
+animation:float 3s ease-in-out infinite;
 }
 
-.character::before { left: 8px; }
-.character::after  { right: 8px; }
-
-.eye {
-  position: absolute;
-  top: 38px;
-  width: 8px;
-  height: 8px;
-  background: #333;
-  border-radius: 50%;
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
 }
 
-.eye.left { left: 28px; }
-.eye.right { right: 28px; }
-
-.nose {
-  position: absolute;
-  top: 52px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  background: #333;
-  border-radius: 50%;
+/* head */
+.head{
+width:140px;
+height:140px;
+background:radial-gradient(circle at 30% 30%,#ffd1dc,#ff9bb5);
+border-radius:50%;
+margin:auto;
+position:relative;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
 }
 
-.heart {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  font-size: 20px;
-  color: #ff4d79;
+/* eyes */
+.eye{
+width:12px;height:12px;
+background:#222;
+border-radius:50%;
+position:absolute;
+top:55px;
+}
+.eye.left{left:40px}
+.eye.right{right:40px}
+
+/* cheeks */
+.cheek{
+width:22px;height:12px;
+background:#ffb3c6;
+border-radius:50%;
+position:absolute;
+top:75px;
+opacity:.7;
+}
+.cheek.left{left:18px}
+.cheek.right{right:18px}
+
+/* nose */
+.nose{
+width:8px;height:6px;
+background:#ff6f91;
+border-radius:50%;
+position:absolute;
+top:72px;
+left:50%;
+transform:translateX(-50%);
 }
 
-/* TEXT */
-h2 {
-  margin: 22px 0 30px;
-  font-weight: 600;
-  line-height: 1.4;
+/* body */
+.body{
+width:110px;
+height:80px;
+background:linear-gradient(#ff9bb5,#ff6f91);
+border-radius:0 0 60px 60px;
+margin:-20px auto 0;
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+position:relative;
 }
 
-/* BUTTONS */
-.buttons {
-  position: relative;
-  width: 100%;
-  height: 70px;
+/* heart */
+.heart{
+position:absolute;
+top:-15px;
+right:-10px;
+font-size:36px;
+animation:heartbeat 1.5s infinite;
+}
+@keyframes heartbeat{
+0%,100%{transform:scale(1)}
+25%{transform:scale(1.2)}
 }
 
-#yes {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff4d79;
-  color: white;
-  font-size: 18px;
-  padding: 14px 52px;
-  border-radius: 40px;
-  border: none;
-  box-shadow: 0 14px 35px rgba(255,77,121,0.55);
+h1{
+font-size:28px;
+margin-bottom:40px;
 }
 
-#no {
-  position: absolute;
-  left: calc(50% + 90px); /* ALWAYS to right of YES */
-  top: 8px;
-  font-size: 12px;
-  padding: 6px 18px;
-  border-radius: 20px;
-  border: none;
-  background: #eee;
-  color: #666;
+.buttons{
+display:flex;
+gap:20px;
+justify-content:center;
 }
 
-small {
-  display: block;
-  margin-top: 14px;
-  color: #999;
+/* SAME ASPECT RATIO */
+button{
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+width:160px;
+height:60px;
+}
+
+.yes-btn{
+background:#e91e63;
+color:white;
+font-size:22px;
+box-shadow:0 6px 20px rgba(233,30,99,.4);
+}
+.yes-btn:hover{transform:scale(1.05)}
+
+.no-btn{
+background:#e8e8e8;
+color:#888;
+font-size:18px;
+}
+
+.romantic-message{
+margin-top:25px;
+font-size:18px;
+color:#e91e63;
+font-weight:600;
+min-height:30px;
+}
+
+.footer-text{
+margin-top:20px;
+font-size:14px;
+color:#999;
+}
+
+/* celebration */
+.celebration{
+display:none;
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff6b9d,#c471ed,#ff6b9d);
+z-index:1000;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+.celebration.show{display:flex}
+
+.celebration h2{
+font-size:60px;
+color:white;
+text-shadow:0 4px 20px rgba(0,0,0,.3);
+}
+
+.celebration p{
+font-size:28px;
+color:white;
+margin-top:10px;
+}
+
+/* floating hearts */
+.floating-heart{
+position:absolute;
+font-size:40px;
+animation:floatHeart 6s linear;
+}
+@keyframes floatHeart{
+0%{transform:translateY(100vh);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* confetti */
+.confetti{
+position:absolute;
+width:10px;height:10px;
+background:white;
+animation:confetti 3s linear;
+}
+@keyframes confetti{
+to{transform:translateY(100vh) rotate(360deg)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <div class="character">
-    <div class="heart">❤️</div>
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="nose"></div>
-  </div>
+<div class="sparkle" style="top:20%;left:10%"></div>
+<div class="sparkle" style="top:80%;left:20%;animation-delay:.5s"></div>
+<div class="sparkle" style="top:30%;right:15%;animation-delay:1s"></div>
 
-  <h2>
-    Dolly,<br>
-    will you be my Valentine?
-  </h2>
+<div class="container">
+<div class="character">
+<div class="head">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="nose"></div>
+<div class="cheek left"></div>
+<div class="cheek right"></div>
+<div class="heart">💗</div>
+</div>
+<div class="body"></div>
+</div>
 
-  <div class="buttons">
-    <button id="yes" onclick="yesClicked()">Yes</button>
-    <button id="no">No</button>
-  </div>
+<h1>will you be my valentine?</h1>
 
-  <small>No seems a bit shy 🙂</small>
+<div class="buttons">
+<button class="yes-btn" onclick="handleYes()">Yes</button>
+<button class="no-btn" onclick="handleNo(this)">No</button>
+</div>
+
+<div class="romantic-message" id="romanticMessage"></div>
+<p class="footer-text">*No* option is 100% lies 😉</p>
+</div>
+
+<div class="celebration" id="celebration">
+<h2>I Love You! 💕</h2>
+<p>You make my heart complete ❤️</p>
 </div>
 
 <script>
-const noBtn = document.getElementById("no");
+let noClickCount=0;
 
-function moveNo() {
-  const shift = Math.random() * 60 + 80; // controlled tease
-  noBtn.style.left = `calc(50% + ${shift}px)`;
+function handleYes(){
+const c=document.getElementById("celebration");
+c.classList.add("show");
+
+for(let i=0;i<100;i++)createConfetti();
+for(let i=0;i<30;i++)setTimeout(createFloatingHeart,i*200);
+
+const msgs=[
+'You make my heart complete ❤️',
+'Forever and always 💕',
+'You are my everything 💖',
+'Together forever, my love 💝'
+];
+let i=0;
+setInterval(()=>{
+i=(i+1)%msgs.length;
+c.querySelector("p").textContent=msgs[i];
+},3000);
 }
 
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
+function handleNo(btn){
+noClickCount++;
+const yes=document.querySelector(".yes-btn");
 
-function yesClicked() {
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(#ff9db5,#ff5f8a);
-      color:white;
-      text-align:center;
-      padding:30px;
-      font-family:Segoe UI;
-      animation: fadeIn 1.2s;">
-      
-      <div>
-        <div style="font-size:64px; animation: pulse 1.5s infinite;">❤️</div>
-        <h1 style="margin:20px 0 10px;">She said YES</h1>
-        <p style="font-size:18px; line-height:1.6; opacity:.95;">
-          From this moment,<br>
-          every smile feels brighter,<br>
-          every heartbeat feels closer.
-        </p>
-        <p style="margin-top:22px; font-style:italic; opacity:.9;">
-          Happy Valentine’s Day, Dolly
-        </p>
-        <p style="margin-top:10px; opacity:.85;">
-          — Ravish
-        </p>
-      </div>
-    </div>
+yes.style.transform="scale("+(1+noClickCount*0.05)+")";
 
-    <style>
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.15); }
-        100% { transform: scale(1); }
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-    </style>
-  `;
+btn.style.transform=`translate(${Math.random()*60-30}px,${Math.random()*40-20}px)`;
+
+const romanticMessages=[
+"You are my sunshine on a cloudy day ☀️",
+"Every moment with you is precious 💎",
+"You make my heart skip a beat 💓",
+"I can't imagine my life without you 🌹",
+"You are the reason I smile every day 😊",
+"My love for you grows stronger each day 🌺",
+"You complete me in every way 💕",
+"Being with you feels like home 🏡",
+"You are my forever and always 💖",
+"I fall in love with you more each day 💗",
+"You are my dream come true ✨",
+"Together we are unstoppable 💪❤️",
+"You light up my world 🌟",
+"My heart belongs only to you 💝",
+"You are my greatest adventure 🗺️❤️"
+];
+
+document.getElementById("romanticMessage").textContent=
+romanticMessages[Math.floor(Math.random()*romanticMessages.length)];
 }
+
+function createConfetti(){
+const d=document.createElement("div");
+d.className="confetti";
+d.style.left=Math.random()*100+"%";
+d.style.background=["#ff6b9d","#ffc371","#c471ed","#12c2e9"][Math.floor(Math.random()*4)];
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),3000);
+}
+
+function createFloatingHeart(){
+const h=document.createElement("div");
+h.className="floating-heart";
+h.textContent=["❤️","💕","💖","💗","💝","💞"][Math.floor(Math.random()*6)];
+h.style.left=Math.random()*100+"%";
+document.getElementById("celebration").appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+
+setInterval(()=>{
+const s=document.createElement("div");
+s.className="sparkle";
+s.style.top=Math.random()*100+"%";
+s.style.left=Math.random()*100+"%";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),2000);
+},500);
 </script>
 
 </body>
